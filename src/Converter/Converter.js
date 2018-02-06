@@ -1,6 +1,7 @@
 import React from "react";
 import "./Converter.css"
 import arrows from "../assets/images/arrow_two_head.png";
+var debounce = require("lodash.debounce");
 
 let toUSD = (rub) => {
     return (rub * 0.01752).toFixed(4)
@@ -59,13 +60,14 @@ class Converter extends React.Component {
                 <div className="Converter_main">
                     <h3 className="Converter_instruction">Enter a number to convert</h3>
                     <div className="Converter_main_input">
-                            <input  onChange={this.makeConversion}  type="text"/>
+                            <input  onChange={debounce(this.makeConversion, 250,{"maxWait" : 2000})}  type="text"/>
                     </div>
                     <div className="Сonverter_main_selection">
                         <form action="">
                             <p className="Сonverter_main_selection_select">
                                 <p className='Сonverter_main_selection_from-to'>From...TO</p>
-                                <select name="" id="">
+                                <select name="Choose type">
+                                    <option value="">Choose type : </option>
                                     <option
                                         value={this.state.USDtoRUB.currencies} onClick={this.makeUSdToRub}>{this.state.USDtoRUB.currencies}
                                     </option>
