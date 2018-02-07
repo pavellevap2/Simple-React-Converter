@@ -17,6 +17,7 @@ class Converter extends React.Component {
             toCurr : "",
         }
     }
+
     enterData(e){
         this.setState({
             inputValue : e.target.value
@@ -28,12 +29,12 @@ class Converter extends React.Component {
             fromCurr : c ,
         })
     }
-
     setToCurr(c) {
        this.setState({
            toCurr : c ,
        })
     }
+
     makeConversion() {
         let inVal = this.state.inputValue;
         let fromCurr = this.state.fromCurr;
@@ -96,10 +97,12 @@ class Converter extends React.Component {
                         </form>
                     </div>
                 </div>
+
                 <div className="Converter_output">
                     <p className="Converter_output_value" >Conversion: {this.state.outputValue}</p>
                     <p className="Converter_output_rate">{this.state.fromCurr} to {this.state.toCurr} </p>
                 </div>
+
             </div>
         )
     }
