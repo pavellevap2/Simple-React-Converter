@@ -3,18 +3,20 @@
     margin: 0 25%;
     padding: 0;
 }
-.Converter_title{
-    background-color:#BD0C06;
+.Converter_title {
+    background-color: #BD0C06;
     margin-top: 0;
     padding: 15px 0;
     text-align: center;
-    color:white;
+    color: white;
 }
+
 .Converter_main{
     background-color: #F1F1F1;
     margin-top: -20px;
     padding: 8px 22px;
 }
+
 .Converter_instruction{
    margin-left: 3px;
    color:#BD0C06;
@@ -23,6 +25,7 @@
     font-size: 26px;
 
 }
+
 .Converter_main_input{
     position: relative;
     top:-17px;
@@ -68,7 +71,7 @@
     background-color: #F1F1F1;
 
 }
-.Сonverter_main_selection>button>img{
+.Сonverter_main_selection>img{
     position: relative;
     top:20px;
     width: 100px;
@@ -87,9 +90,6 @@
     font-weight: bold;
     border: 1px solid #78787A;
 }
-
-
-
 .Converter_output{
     background-color: #78787A;
     padding: 15px;

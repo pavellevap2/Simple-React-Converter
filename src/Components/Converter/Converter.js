@@ -1,16 +1,11 @@
 import React from "react";
 import "./Converter.css"
-import arrows from "../assets/images/arrow_two_head.png";
+import arrow from "../../assets/images/arrow_top.png";
 // const debounce = require("lodash.debounce");
 
 const currencies = ["USD", "EURO", "RUB"];
+let USD_TO_CURR = { "USD": 1 , "RUB": 57.2409845 , "EURO": 40};
 
-let USD_TO_CURR = {  "RUB": 57.2196, "EUR": 0.810431879 };
-let EURO_TO_RUB = { "RUB" : 70.576659};
-
-let convertToCurr = (amount, curr) => {
-    return (amount * curr)
-} ;
 
 class Converter extends React.Component {
     constructor(props) {
@@ -36,50 +31,19 @@ class Converter extends React.Component {
 
     setToCurr(c) {
        this.setState({
-           toCurr : c,
+           toCurr : c ,
        })
     }
-    makeConversion(){
-       let toCurr = this.state.toCurr;
-       let fromCurr = this.state.fromCurr;
-       let inputVal = this.state.inputValue;
-
-        if (toCurr === fromCurr){
+    makeConversion() {
+        if (this.state.fromCurr === "USD") {
             this.setState({
-                outputValue : inputVal
+                outputValue: this.state.inputValue * USD_TO_CURR[this.state.fromCurr]
             })
-        }
-
-        if (fromCurr === "USD" && toCurr === "EURO"){
-            this.setState({
-                outputValue : convertToCurr(inputVal, USD_TO_CURR.EUR) ,
-            })
-        } else if (fromCurr === "USD" && toCurr === "RUB"){
-            this.setState({
-                outputValue : convertToCurr(inputVal, USD_TO_CURR.RUB)
-            })
-        }
-
-        if (fromCurr === "EURO" && toCurr === "USD"){
-            this.setState({
-                outputValue : 1 / convertToCurr(inputVal,USD_TO_CURR.EUR)
-            })
-        } else if (fromCurr === "EURO" && toCurr === "RUB"){
-            this.setState({
-                outputValue :  convertToCurr(inputVal , EURO_TO_RUB.RUB)
-            })
-        }
-
-
-         if (fromCurr === "RUB" && toCurr === "USD"){
-            this.setState({
-                outputValue : (convertToCurr(inputVal,1 / USD_TO_CURR.RUB)).toFixed(3)
-            })
-        } else if (fromCurr === "RUB" && toCurr === "EURO"){
-            this.setState({
-                outputValue : (convertToCurr(inputVal, 1 / EURO_TO_RUB.RUB )).toFixed(3)
-            })
-        }
+            } else {
+                this.setState({
+                    outputValue : 1 / (this.state.inputValue * USD_TO_CURR[this.state.fromCurr])
+                })
+            }
     }
 
     render() {
@@ -107,11 +71,7 @@ class Converter extends React.Component {
                                 </select>
                             </div>
                         </form>
-
-                        <button>
-                            <img src={arrows} alt="arrows"/>
-                        </button>
-
+                        <img src={arrow} alt="arrows"/>
                         <form action="">
                             <div className="Сonverter_main_selection_select">
                                 <p className='Сonverter_main_selection_from-to'>TO</p>
