@@ -73,7 +73,7 @@ class Converter extends React.Component {
                                 <select name="Choose type">
                                     <option value="Choose currency">currencies:</option>
                                     {currencies.map(c =>
-                                        <option onClick={() => this.setFromCurr(c)}>
+                                        <option key={c} onClick={() => this.setFromCurr(c)}>
                                             {c}
                                         </option>
                                     )}
@@ -87,7 +87,7 @@ class Converter extends React.Component {
                                 <select name="Choose type">
                                     <option value="Choose currency">currencies:</option>
                                     {currencies.map(c =>
-                                        <option onClick={() => this.setToCurr(c)}>
+                                        <option key={c} onClick={() => this.setToCurr(c)}>
                                             {c}
                                         </option>
                                     )}
