@@ -10,7 +10,6 @@ const rate = {
     "EURO": {"USD" : 1.23391, "RUB" : 70.6302232 ,"CNY" : 7.73562786 },
     "RUB": {"USD" : 0.01747, "EURO" : 0.0141582449 ,"CNY" : 0.109522914 },
     "CNY": {"USD" : 0.15951, "EURO" : 0.129271989  ,"RUB" : 9.13050944 },
-
 };
 
 let convertToCurr = (amount, curr) => {
@@ -27,11 +26,11 @@ class Converter extends React.Component {
             toCurr : "",
         }
     }
-    // enterData(e){
-    //     this.setState({
-    //         inputValue : e.target.value
-    //     })
-    // }
+    enterData(e){
+        this.setState({
+            inputValue : e.target.value
+        })
+    }
 
     setFromCurr(c){
         this.setState({
@@ -44,16 +43,14 @@ class Converter extends React.Component {
            toCurr : c
        })
     }
-    makeConversion(e){
+    makeConversion(){
         if(this.state.fromCurr === "USD" && this.state.toCurr === "RUB"){
             this.setState({
-                inputValue : e.target.value,
                 outputValue : convertToCurr(this.state.inputValue, rate.USD.RUB)
             })
         }
 
     }
-
 
     render() {
 
@@ -64,7 +61,7 @@ class Converter extends React.Component {
                 <div className="Converter_main">
                     <h3 className="Converter_instruction">Enter a number to convert</h3>
                     <div className="Converter_main_input">
-                            <input onChange ={ (e) => this.makeConversion(e)}   type="text"/>
+                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={()=> this.makeConversion()} type="text"/>
                     </div>
                     <div className="Сonverter_main_selection">
                         <form action="">
