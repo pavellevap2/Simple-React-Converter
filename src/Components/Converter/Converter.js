@@ -1,11 +1,11 @@
 import React from "react";
 import "./Converter.css"
 import arrow from "../../assets/images/arrow_top.png";
-// const debounce = require("lodash.debounce");
+import reboot from "../../assets/images/reboot.png"
+const debounce = require("lodash.debounce");
 
 const currencies = ["USD", "EURO", "RUB"];
-let USD_TO_CURR = { "USD": 1 , "RUB": 57.2409845 , "EURO": 40};
-
+let USD_TO_CURR = { "USD": 1 , "RUB": 57.2409845 , "EURO": 0.814358774};
 
 class Converter extends React.Component {
     constructor(props) {
@@ -35,15 +35,19 @@ class Converter extends React.Component {
        })
     }
     makeConversion() {
-        if (this.state.fromCurr === "USD") {
+        let inVal = this.state.inputValue;
+        let fromCurr = this.state.fromCurr;
+        let toCurr = this.state.toCurr;
+
+        if (fromCurr === "USD") {
             this.setState({
-                outputValue: this.state.inputValue * USD_TO_CURR[this.state.fromCurr]
+                outputValue: inVal * USD_TO_CURR[toCurr]
             })
-            } else {
-                this.setState({
-                    outputValue : 1 / (this.state.inputValue * USD_TO_CURR[this.state.fromCurr])
-                })
-            }
+        } else {
+            this.setState({
+                outputValue :  1 / (inVal *  ( USD_TO_CURR[fromCurr])) ,
+            })
+        }
     }
 
     render() {
@@ -55,7 +59,12 @@ class Converter extends React.Component {
                 <div className="Converter_main">
                     <h3 className="Converter_instruction">Enter a number to convert</h3>
                     <div className="Converter_main_input">
-                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={()=> this.makeConversion()} type="text"/>
+                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ debounce( ()=> this.makeConversion(), 2500 )}
+                                   type="text"/>
+                        <button className="Converter_main_input_reboot" onClick={() => this.makeConversion()}>
+                            ↻
+                        </button>
+
                     </div>
                     <div className="Сonverter_main_selection">
                         <form action="">

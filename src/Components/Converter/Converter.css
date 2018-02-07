@@ -14,7 +14,7 @@
 .Converter_main{
     background-color: #F1F1F1;
     margin-top: -20px;
-    padding: 8px 22px;
+    padding: 8px 22px 60px 22px;
 }
 
 .Converter_instruction{
@@ -37,6 +37,19 @@
     color:#78787A;
     font-weight: bold;
     padding: 5px 0;
+}
+.Converter_main_input_reboot{
+    background-color: #F1F1F1;
+    border: none;
+    margin-top: -32px;
+    font-size: 70px;
+    position: relative;
+    top:15px;
+    left: 10px;
+}
+.Converter_main_input_reboot>img{
+    width: 200px;
+    height: 25px;
 }
 
 
