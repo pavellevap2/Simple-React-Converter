@@ -1,6 +1,6 @@
 .Converter{
     border: 2px solid darkgray;
-    margin: 0 30%;
+    margin: 0 25%;
     padding: 0;
 }
 .Converter_title{
@@ -40,7 +40,7 @@
 
 .Сonverter_main_selection{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 30px;
 
 }
@@ -57,7 +57,7 @@
 .Сonverter_main_selection_select>select{
     color: #F1F1F1!important;
     background-color: #BD0C06!important;
-    padding: 12px 155px;
+    padding: 12px 55px;
     text-align: center;
     font-size: 26px;
     font-weight: bold;
@@ -95,7 +95,7 @@
     padding: 15px;
 }
 .Converter_output_value{
-    text-align: right;
+    text-align: left;
     padding:0 5px;
     font-size: 48px;
     font-weight: 500;
@@ -105,7 +105,7 @@
     margin-bottom: 10px;
 }
 .Converter_output_rate{
-    text-align: right;
+    text-align: left;
     font-size: 48px;
     font-weight: 500;
     color:white;
