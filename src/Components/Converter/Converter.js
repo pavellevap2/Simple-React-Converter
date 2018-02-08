@@ -29,7 +29,7 @@ class Converter extends React.Component {
         let fromCurr = this.state.fromCurr;
         let toCurr = this.state.toCurr;
 
-        let rate = fromCurr == "USD"
+        let rate = (fromCurr == "USD")
             ? USD_TO_CURR[toCurr]
             : USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr];
         this.setState({
