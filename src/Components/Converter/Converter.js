@@ -14,8 +14,9 @@ class Converter extends React.Component {
             outputValue : "",
             fromCurr : "",
             toCurr : "",
-        }
-            this.makeConversion = debounce(this.makeConversion.bind(this) , 2500)
+            rate : ""
+        };
+            this.makeConversion = debounce(this.makeConversion.bind(this) , 2000)
     }
 
     enterData(e){
@@ -42,11 +43,13 @@ class Converter extends React.Component {
 
         if (fromCurr === "USD") {
             this.setState({
-                outputValue: inVal * USD_TO_CURR[toCurr]
+                outputValue: inVal * USD_TO_CURR[toCurr],
+                rate :  USD_TO_CURR[toCurr] ,
             })
         } else {
             this.setState({
                 outputValue : (USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr]) * inVal ,
+                rate : (USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr]) ,
             })
         }
     }
@@ -100,7 +103,7 @@ class Converter extends React.Component {
 
                 <div className="Converter_output">
                     <p className="Converter_output_value" >Conversion: {this.state.outputValue}</p>
-                    <p className="Converter_output_rate">{this.state.fromCurr} to {this.state.toCurr} </p>
+                    <p className="Converter_output_rate">{this.state.fromCurr} equal {this.state.rate}</p>
                 </div>
 
             </div>
