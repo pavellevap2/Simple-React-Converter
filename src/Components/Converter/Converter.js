@@ -60,7 +60,7 @@ class Converter extends React.Component {
                                 <select name="Choose type" className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
                                     {Object.keys(USD_TO_CURR).sort().map( (c, i) =>
-                                        <option key={i} onClick={ (x) => this.setState({fromCurr:c})}>
+                                        <option key={i} onClick={ () => this.setState({fromCurr:c})}>
                                             {c}
                                         </option>
                                     )}
@@ -74,7 +74,7 @@ class Converter extends React.Component {
                                 <select name="Choose type " className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
                                     {Object.keys(USD_TO_CURR).sort().map( (c, i) =>
-                                        <option key={i} onClick={ (x)=> this.setState({toCurr: c})}>
+                                        <option key={i} onClick={ () => this.setState({toCurr: c})}>
                                             {c}
                                         </option>
                                     )}
