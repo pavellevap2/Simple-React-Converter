@@ -1,5 +1,5 @@
 import React from "react";
-import "./Converter.css"
+import "../../assets/styles/Converter.css"
 import arrow from "../../assets/images/arrow_top.png";
 const debounce = require("lodash.debounce");
 
@@ -58,23 +58,23 @@ class Converter extends React.Component {
 
         return(
             <div className="Converter">
-                <h1 className="Converter_title">Simple Converter </h1>
+                <h1 className="Converter__title">Simple Converter </h1>
 
-                <div className="Converter_main">
-                    <h3 className="Converter_instruction">Enter a number to convert</h3>
-                    <div className="Converter_main_input">
+                <div className="Converter__b-main">
+                    <h3 className="Converter__b-main__title">Enter a number to convert</h3>
+
+                    <div className="Converter__b-main__input-form">
                             <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ ()=> this.conversionDebounced()}
-                                   type="text"/>
-                        <button className="Converter_main_input_reboot" onClick={() => this.makeConversion()}>
+                                   type="text" className="Converter__b-main__input-form__input"/>
+                        <button className="Converter__b-main__input-form__btn" onClick={() => this.makeConversion()}>
                             ↻
                         </button>
-
                     </div>
-                    <div className="Сonverter_main_selection">
+
+                    <div className="Converter__b-main__selection-form">
                         <form action="">
-                            <div className="Сonverter_main_selection_select">
-                                <p className='Сonverter_main_selection_from-to'>From</p>
-                                <select name="Choose type">
+                                <p className='Converter__b-main__selection-form__caption'>From</p>
+                                <select name="Choose type" className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
                                     {currencies.map( (c, i) =>
                                         <option key={i} onClick={() => this.setFromCurr(c)}>
@@ -82,13 +82,13 @@ class Converter extends React.Component {
                                         </option>
                                     )}
                                 </select>
-                            </div>
                         </form>
-                        <img src={arrow} alt="arrows"/>
+
+                        <img src={arrow} alt="arrows" className="Converter__b-main__selection-form__img"/>
+
                         <form action="">
-                            <div className="Сonverter_main_selection_select">
-                                <p className='Сonverter_main_selection_from-to'>TO</p>
-                                <select name="Choose type">
+                                <p className='Converter__b-main__selection-form__caption'>TO</p>
+                                <select name="Choose type " className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
                                     {currencies.map( (c, i) =>
                                         <option key={i} onClick={() => this.setToCurr(c)}>
@@ -96,14 +96,14 @@ class Converter extends React.Component {
                                         </option>
                                     )}
                                 </select>
-                            </div>
                         </form>
                     </div>
+
                 </div>
 
-                <div className="Converter_output">
-                    <p className="Converter_output_value" >Conversion: {this.state.outputValue}</p>
-                    <p className="Converter_output_rate">{this.state.fromCurr} equal {this.state.rate}</p>
+                <div className="Converter__b-output">
+                    <p className="Converter__b-output__value" >Conversion: {this.state.outputValue}</p>
+                    <p className="Converter__b-output__rate">{this.state.fromCurr} equal : {this.state.rate}</p>
                 </div>
 
             </div>
