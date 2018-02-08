@@ -1,0 +1,147 @@
+@mixin text-prop($color, $font-size,  $text-align, $font-weight){
+  color: $color;
+  font-size: $font-size;
+  text-align: $text-align;
+  font-weight : $font-weight;
+}
+@mixin position($position,$top,$left){
+  position: $position;
+  top: $top;
+  left : $left;
+}
+
+.Converter{
+  border: 2px solid darkgray;
+  margin: 0 25%;
+  padding: 0;
+  .Converter__title {
+      background-color: #BD0C06;
+      margin-top: 0;
+      padding: 15px 0;
+      @include text-prop(white,32px,center,_);
+  }
+  .Converter__b-main {
+    background-color: #F1F1F1;
+    margin-top: -20px;
+    padding: 8px 22px 60px 22px;
+    .Converter__b-main__title {
+      margin-left: 3px;
+      @include text-prop(#BD0C06, 26px, _, bolder);
+      font-style: italic;
+    }
+    .Converter__b-main__input-form {
+      position: relative;
+      top: -17px;
+      .Converter__b-main__input-form__input {
+        width: 55%;
+        @include text-prop(#78787A, 22px, _, bold);
+        padding: 5px 0;
+      }
+      .Converter__b-main__input-form__btn {
+        background-color: #F1F1F1;
+        border: none;
+        margin-top: -32px;
+        font-size: 70px;
+        @include position(relative, 15px, 10px);
+      }
+    }
+
+    .Converter__b-main__selection-form {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      .Converter__b-main__selection-form__caption {
+        @include text-prop(#78787A,25px,center,bold);
+        text-transform: uppercase;
+        margin-bottom: 5px;
+
+      }
+      .Converter__b-main__selection-form__select {
+        @extend .Converter__b-main__selection-form__caption;
+        margin-bottom: 0;
+        color:white;
+        background-color: #BD0C06;
+        padding: 10px 20px;
+      }
+      .Converter__b-main__selection-form__img {
+        @include position(relative,20px,_);
+        width: 100px;
+      }
+    }
+  }
+
+.Converter__b-output{
+  background-color: #78787A;
+  padding: 15px;
+    .Converter__b-output__value{
+      @include position(relative,-10px,_);
+      @include text-prop(white,48px,left,500);
+      padding:0 5px;
+      margin-bottom: 10px;
+    }
+    .Converter__b-output__rate {
+      @include text-prop(white,48px,left,500);
+      margin: -10px 0;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .Converter{
+   margin: 0 ;
+    width: 100%;
+  }
+  .Converter__b-main__title{
+    font-size: 20px!important;
+  }
+  .Converter__b-main__input-form__input{
+    width: 80%!important;
+  }
+  .Converter__b-main__input-form__btn {
+    display: none;
+  }
+  .Converter__b-main__selection-form{
+    display: flex;
+    text-align: center;
+    margin-bottom: 50px;
+    flex-flow: row wrap;
+    .Converter__b-main__selection-form__img{
+      display: none;
+    }
+  }
+  .Converter__b-output__value{
+    font-size: 30px!important;
+  }
+  .Converter__b-output__rate{
+    font-size: 30px!important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+  .Converter{
+    margin: 0 ;
+    width: 100%;
+    .Converter__b-main__selection-form__img{
+    display: none!important;
+    }
+  }
+}
+@media (min-width: 991px) and (max-width: 1199px) {
+  .Converter__b-main__selection-form__img{
+    display: none!important;
+  }
+  .Converter__b-main__input-form__btn {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .Converter{
+    margin: 0 20%;
+
+  }
+}
+@media (max-width: 1400px) {
+
+}
