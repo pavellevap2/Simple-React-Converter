@@ -76,8 +76,8 @@ class Converter extends React.Component {
                                 <p className='Сonverter_main_selection_from-to'>From</p>
                                 <select name="Choose type">
                                     <option value="Choose currency">currencies:</option>
-                                    {currencies.map(c =>
-                                        <option key={c} onClick={() => this.setFromCurr(c)}>
+                                    {currencies.map( (c, i) =>
+                                        <option key={i} onClick={() => this.setFromCurr(c)}>
                                             {c}
                                         </option>
                                     )}
@@ -90,8 +90,8 @@ class Converter extends React.Component {
                                 <p className='Сonverter_main_selection_from-to'>TO</p>
                                 <select name="Choose type">
                                     <option value="Choose currency">currencies:</option>
-                                    {currencies.map(c =>
-                                        <option key={c} onClick={() => this.setToCurr(c)}>
+                                    {currencies.map( (c, i) =>
+                                        <option key={i} onClick={() => this.setToCurr(c)}>
                                             {c}
                                         </option>
                                     )}
