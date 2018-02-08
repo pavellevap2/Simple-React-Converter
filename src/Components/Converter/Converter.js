@@ -1,7 +1,6 @@
 import React from "react";
 import "./Converter.css"
 import arrow from "../../assets/images/arrow_top.png";
-import reboot from "../../assets/images/reboot.png"
 const debounce = require("lodash.debounce");
 
 const currencies = ["USD", "EURO", "RUB"];
@@ -16,6 +15,7 @@ class Converter extends React.Component {
             fromCurr : "",
             toCurr : "",
         }
+            this.makeConversion = debounce(this.makeConversion.bind(this) , 2500)
     }
 
     enterData(e){
@@ -46,7 +46,7 @@ class Converter extends React.Component {
             })
         } else {
             this.setState({
-                outputValue :  1 / (inVal *  ( USD_TO_CURR[fromCurr])) ,
+                outputValue : (USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr]) * inVal ,
             })
         }
     }
@@ -60,9 +60,9 @@ class Converter extends React.Component {
                 <div className="Converter_main">
                     <h3 className="Converter_instruction">Enter a number to convert</h3>
                     <div className="Converter_main_input">
-                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ debounce( ()=> this.makeConversion(), 2500 )}
+                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ this.makeConversion}
                                    type="text"/>
-                        <button className="Converter_main_input_reboot" onClick={() => this.makeConversion()}>
+                        <button className="Converter_main_input_reboot" onClick={this.makeConversion}>
                             ↻
                         </button>
 
