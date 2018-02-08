@@ -1,5 +1,5 @@
 import React from "react";
-import "./Converter.css"
+import "../../assets/styles/Converter.css"
 import arrow from "../../assets/images/arrow_top.png";
 const debounce = require("lodash.debounce");
 
