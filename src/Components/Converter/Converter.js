@@ -3,7 +3,6 @@ import "../../assets/styles/Converter.css"
 import arrow from "../../assets/images/arrow_top.png";
 const debounce = require("lodash.debounce");
 
-const currencies = ["USD", "EURO", "RUB"];
 let USD_TO_CURR = { "USD": 1 , "RUB": 57.2409845 , "EURO": 0.814358774 , };
 
 class Converter extends React.Component {
@@ -16,7 +15,7 @@ class Converter extends React.Component {
             toCurr : "",
             rate : ""
         };
-            this.conversionDebounced = debounce(() => this.makeConversion(), 2000)
+            this.convertDebounced = debounce(() => this.convert(), 2000)
     }
 
     enterData(e){
@@ -25,37 +24,21 @@ class Converter extends React.Component {
         })
     }
 
-    setFromCurr(c){
-        this.setState({
-            fromCurr : c ,
-        })
-    }
-    setToCurr(c) {
-       this.setState({
-           toCurr : c ,
-       })
-    }
-
-    makeConversion() {
+    convert() {
         let inVal = this.state.inputValue;
         let fromCurr = this.state.fromCurr;
         let toCurr = this.state.toCurr;
 
-        if (fromCurr === "USD") {
-            this.setState({
-                outputValue: inVal * USD_TO_CURR[toCurr],
-                rate :  USD_TO_CURR[toCurr] ,
-            })
-        } else {
-            this.setState({
-                outputValue : (USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr]) * inVal ,
-                rate : (USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr]) ,
-            })
-        }
+        let rate = fromCurr == "USD"
+            ? USD_TO_CURR[toCurr]
+            : USD_TO_CURR[toCurr] / USD_TO_CURR[fromCurr];
+        this.setState({
+            outputValue: inVal * rate,
+            rate,
+        })
     }
 
     render() {
-
         return(
             <div className="Converter">
                 <h1 className="Converter__title">Simple Converter </h1>
@@ -64,9 +47,9 @@ class Converter extends React.Component {
                     <h3 className="Converter__b-main__title">Enter a number to convert</h3>
 
                     <div className="Converter__b-main__input-form">
-                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ ()=> this.conversionDebounced()}
+                            <input onChange ={ (e) => this.enterData(e)}  onKeyUp={ ()=> this.convertDebounced()}
                                    type="text" className="Converter__b-main__input-form__input"/>
-                        <button className="Converter__b-main__input-form__btn" onClick={() => this.makeConversion()}>
+                        <button className="Converter__b-main__input-form__btn" onClick={() => this.convert()}>
                             ↻
                         </button>
                     </div>
@@ -76,8 +59,8 @@ class Converter extends React.Component {
                                 <p className='Converter__b-main__selection-form__caption'>From</p>
                                 <select name="Choose type" className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
-                                    {currencies.map( (c, i) =>
-                                        <option key={i} onClick={() => this.setFromCurr(c)}>
+                                    {Object.keys(USD_TO_CURR).sort().map( (c, i) =>
+                                        <option key={i} onClick={ (x) => this.setState({fromCurr:c})}>
                                             {c}
                                         </option>
                                     )}
@@ -90,8 +73,8 @@ class Converter extends React.Component {
                                 <p className='Converter__b-main__selection-form__caption'>TO</p>
                                 <select name="Choose type " className="Converter__b-main__selection-form__select">
                                     <option value="Choose currency">currencies:</option>
-                                    {currencies.map( (c, i) =>
-                                        <option key={i} onClick={() => this.setToCurr(c)}>
+                                    {Object.keys(USD_TO_CURR).sort().map( (c, i) =>
+                                        <option key={i} onClick={ (x)=> this.setState({toCurr: c})}>
                                             {c}
                                         </option>
                                     )}
@@ -110,4 +93,4 @@ class Converter extends React.Component {
         )
     }
 }
-export default Converter
+export default Converter;

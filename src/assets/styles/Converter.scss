@@ -104,9 +104,9 @@
   }
   .Converter__b-main__selection-form{
     display: flex;
+    flex-flow: row wrap;
     text-align: center;
     margin-bottom: 50px;
-    flex-flow: row wrap;
     .Converter__b-main__selection-form__img{
       display: none;
     }
